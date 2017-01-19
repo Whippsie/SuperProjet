@@ -3,6 +3,8 @@ package ca.umontreal.iro.hurtubin.superprojet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,13 +14,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState == null)
-            Toast.makeText(this, "Create (new)", Toast.LENGTH_LONG).show();
-        else
-            Toast.makeText(this, "Create (saved instance)", Toast.LENGTH_LONG).show();
+        Button button = (Button) findViewById(R.id.button1);
 
-        Log.i("MAIN", "L'activité vient d'entrer dans onCreate");
-        Log.e("MAIN", "Il y a une erreur");
+        Toast.makeText(this, R.string.app_name, Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("TEST", "" + (v.getContext() == getApplicationContext()));
+                Toast.makeText(getApplicationContext(), "Merci d'avoir cliqué", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button button2 = (Button) findViewById(R.id.button2);
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "NOOOOOOOOONNN", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
